@@ -33,6 +33,7 @@ source = '''
 ffibuilder.set_source(
     '_pyegl',
     source,
+    libraries=['EGL'],
     extra_compile_args=["-I"+INCLUDE_FOLDER]
 )
 
