@@ -191,8 +191,9 @@ _errors = {
 
 
 def _check(result):
-    if result == EGL_TRUE:
-        return
+    code = lib.eglGetError()
+    if code == EGL_SUCCESS:
+        return result
 
     raise EglError(_errors[result])
 
@@ -228,3 +229,25 @@ def eglChooseConfig(display, attrib_list):
                                num_config))
 
     return configs
+
+
+def eglCreateWindowSurface(display, config, window, attrib_list):
+    if not attrib_list:
+        attrib_list = ffi.NULL
+
+    return _check(lib.eglCreateWindowSurface(
+        display, config, window, attrib_list))
+
+
+def eglCreateContext(display, config, share_context, attrib_list):
+    return _check(lib.eglCreateContext(
+        display, config, share_context, attrib_list))
+
+
+def eglMakeCurrent(display, draw, read, context):
+    _check(lib.eglMakeCurrent(
+        display, draw, read, context))
+
+
+def eglSwapBuffers(display, surface):
+    _check(lib.eglSwapBuffers(display, surface))
