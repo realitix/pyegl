@@ -20,3 +20,4 @@ EGLint eglGetError(void);
 EGLContext eglCreateContext (EGLDisplay dpy, EGLConfig config, EGLContext share_context, const EGLint *attrib_list);
 EGLBoolean eglMakeCurrent (EGLDisplay dpy, EGLSurface draw, EGLSurface read, EGLContext ctx);
 EGLBoolean eglSwapBuffers (EGLDisplay dpy, EGLSurface surface);
+EGLBoolean eglGetConfigAttrib (EGLDisplay dpy, EGLConfig config, EGLint attribute, EGLint *value);

@@ -195,7 +195,7 @@ def _check(result):
     if code == EGL_SUCCESS:
         return result
 
-    raise EglError(_errors[result])
+    raise EglError(_errors[code])
 
 
 def eglGetDisplay(display_id):
@@ -251,3 +251,9 @@ def eglMakeCurrent(display, draw, read, context):
 
 def eglSwapBuffers(display, surface):
     _check(lib.eglSwapBuffers(display, surface))
+
+
+def eglGetConfigAttrib(display, config, attribute):
+    value = ffi.new('EGLint*')
+    _check(lib.eglGetConfigAttrib(display, config, attribute, value))
+    return value[0]
